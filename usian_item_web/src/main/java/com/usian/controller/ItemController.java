@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2020/5/14 17:48
  */
 @RestController
-@RequestMapping("/frontend/item")
+@RequestMapping("/backend/item")
 public class ItemController {
     @Autowired
     private ItemServiceFeignClient itemServiceFeignClient;
