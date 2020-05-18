@@ -30,9 +30,22 @@ public interface ItemServiceFeignClient {
      */
     @RequestMapping("/service/itemCategory/selectItemCategoryByParentId")
     List<TbItemCat> selectItemCategoryByParentId(@RequestParam Long id);
+
     /**
      * 根据商品分类 ID 查询规格参数模板
+     * @param itemCatId
+     * @return
      */
-    @PostMapping("/service/itemParam/selectItemParamByItemCatId")
+    @RequestMapping("/service/itemParam/selectItemParamByItemCatId/{itemCatId}")
     TbItemParam selectItemParamByItemCatId(@PathVariable Long itemCatId);
+
+    /**
+     * 添加商品
+     * @param tbItem
+     * @param desc
+     * @param itemParams
+     * @return
+     */
+    @PostMapping("/service/item/insertTbItem")
+    Integer insertTbItem(TbItem tbItem,@RequestParam String desc,@RequestParam  String itemParams);
 }
