@@ -23,10 +23,19 @@ public interface ItemServiceFeignClient {
     @RequestMapping("/service/item/selectItemInfo")
     TbItem selectItemInfo(@RequestParam("itemId") Long itemId);
 
+    /**
+     * 查询商品列表接口
+     * @param page
+     * @param rows
+     * @return
+     */
     @RequestMapping("/service/item/selectTbItemAllByPage")
     PageResult selectTbItemAllByPage(@RequestParam Integer page,@RequestParam Integer rows);
+
     /**
      * 根据类目 ID 查询当前类目的子节点
+     * @param id
+     * @return
      */
     @RequestMapping("/service/itemCategory/selectItemCategoryByParentId")
     List<TbItemCat> selectItemCategoryByParentId(@RequestParam Long id);
