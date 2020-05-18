@@ -25,10 +25,14 @@ public interface ItemServiceFeignClient {
 
     @RequestMapping("/service/item/selectTbItemAllByPage")
     PageResult selectTbItemAllByPage(@RequestParam Integer page,@RequestParam Integer rows);
-
+    /**
+     * 根据类目 ID 查询当前类目的子节点
+     */
     @RequestMapping("/service/itemCategory/selectItemCategoryByParentId")
     List<TbItemCat> selectItemCategoryByParentId(@RequestParam Long id);
-
+    /**
+     * 根据商品分类 ID 查询规格参数模板
+     */
     @PostMapping("/service/itemParam/selectItemParamByItemCatId")
     TbItemParam selectItemParamByItemCatId(@PathVariable Long itemCatId);
 }
