@@ -41,4 +41,25 @@ public class ItemParamController {
         return  itemParamService.selectItemParamAll(page,rows);
     }
 
+    /**
+     * 添加商品规格模板
+     * @param itemCatId
+     * @param paramData
+     * @return
+     */
+    @RequestMapping("/insertItemParam")
+    public  Integer insertItemParam(Long itemCatId,String paramData){
+        return  itemParamService.insertItemParam(itemCatId,paramData);
+    }
+
+    /**
+     * 商品规格模板删除
+     * @param id
+     * @return
+     */
+    @RequestMapping("/deleteItemParamById")
+    public  Integer deleteItemParamById(Long id){
+       return itemParamService.deleteItemParamById(id);
+    }
+
 }

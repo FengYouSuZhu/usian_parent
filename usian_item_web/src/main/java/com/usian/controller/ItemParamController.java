@@ -50,4 +50,35 @@ public class ItemParamController {
         return Result.error ("查无结果");
     }
 
+    /**
+     * 添加商品规格模板
+     * @param itemCatId
+     * @param paramData
+     * @return
+     */
+    @RequestMapping("/insertItemParam")
+    public  Result insertItemParam(Long itemCatId,String paramData){
+       Integer num=itemServiceFeignClient.insertItemParam(itemCatId,paramData);
+        if (num==1){
+            return Result.ok();
+        }
+        return  Result.error("添加失败：该类目已有规格模板");
+    }
+
+    /**
+     * 商品规格模板删除
+     * @param id
+     * @return
+     */
+    @RequestMapping("/deleteItemParamById")
+    public Result deleteItemParamById(Long id){
+        Integer num=itemServiceFeignClient.deleteItemParamById(id);
+        if (num==1){
+            return Result.ok();
+        }
+        return  Result.error("删除失败");
+    }
+
+
+
 }
