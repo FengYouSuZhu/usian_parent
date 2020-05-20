@@ -43,6 +43,7 @@ public class ItemServiceImpl implements ItemService {
         PageHelper.startPage(page,rows);
 
         TbItemExample example = new TbItemExample();
+        example.setOrderByClause("updated DESC");
         TbItemExample.Criteria criteria = example.createCriteria();
         criteria.andStatusEqualTo((byte)1);
         List<TbItem> list = tbItemMapper.selectByExample(example);

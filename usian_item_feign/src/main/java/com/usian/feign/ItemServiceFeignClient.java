@@ -55,6 +55,15 @@ public interface ItemServiceFeignClient {
      * @param itemParams
      * @return
      */
-    @PostMapping("/service/item/insertTbItem")
+    @RequestMapping("/service/item/insertTbItem")
     Integer insertTbItem(TbItem tbItem,@RequestParam String desc,@RequestParam  String itemParams);
+
+    /***
+     * 查询所有商品规格模板
+     * @param page
+     * @param rows
+     * @return
+     */
+    @RequestMapping("/service/itemParam/selectItemParamAll")
+    PageResult selectItemParamAll(@RequestParam Integer page,@RequestParam Integer rows);
 }

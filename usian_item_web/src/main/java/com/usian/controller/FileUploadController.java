@@ -28,8 +28,13 @@ public class FileUploadController {
 
     private  static  final List<String> contentTypeList= Arrays.asList("image/jpeg","image/gif");
 
+    /**
+     * 图片上传
+     * @param file
+     * @return
+     */
     @RequestMapping("/upload")
-    public Result fileUpload(MultipartFile file) throws IOException {
+    public Result fileUpload(MultipartFile file){
         String filename = file.getOriginalFilename();
         //校验文件的类型
         String contentType = file.getContentType();
@@ -39,18 +44,22 @@ public class FileUploadController {
         }
 
         //校验文件的内容
-        BufferedImage bufferedImage = ImageIO.read(file.getInputStream());
-        if (bufferedImage ==null){
-            return Result.error("文件内容不合法：" + filename);
-        }
-        // 保存到服务器
-        String substring = filename.substring(filename.lastIndexOf("."));
+        BufferedImage bufferedImage = null;
+        try {
+            bufferedImage = ImageIO.read(file.getInputStream());
+            if (bufferedImage ==null){
+                return Result.error("文件内容不合法：" + filename);
+            }
+            // 保存到服务器
+            String substring = filename.substring(filename.lastIndexOf("."));
+            StorePath storePath = storageClient.uploadFile(file.getInputStream(), file.getSize(), substring, null);
+            // 生成url地址，返回
+                return Result.ok("http://image.usian.com/" + storePath.getFullPath());
 
-        StorePath storePath = storageClient.uploadFile(file.getInputStream(), file.getSize(), substring, null);
-        // 生成url地址，返回
-        return Result.ok("http://image.usian.com/" + storePath.getFullPath());
-
-       // return Result.error("服务器内部错误");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+                return Result.error("服务器内部错误");
     }
 
 }

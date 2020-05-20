@@ -24,10 +24,24 @@ public class ItemController {
         return this.itemService.selectItemInfo(itemId);
     }
 
+    /**
+     * 查询商品列表接口
+     * @param page
+     * @param rows
+     * @return
+     */
     @RequestMapping("/selectTbItemAllByPage")
     public PageResult selectTbItemAllByPage(Integer page,Integer rows){
        return itemService.selectTbItemAllByPage(page,rows);
     }
+
+    /**
+     * 添加商品
+     * @param tbItem
+     * @param desc
+     * @param itemParams
+     * @return
+     */
     @RequestMapping("/insertTbItem")
     public  Integer insertTbItem(@RequestBody TbItem tbItem,String desc,String itemParams){
         return itemService.insertTbItem(tbItem,desc,itemParams);

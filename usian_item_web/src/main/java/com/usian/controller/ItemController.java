@@ -29,6 +29,13 @@ public class ItemController {
         return Result.error("查无结果");
 
     }
+
+    /**
+     * 查询商品列表接口
+     * @param page
+     * @param rows
+     * @return
+     */
     @RequestMapping("/selectTbItemAllByPage")
     public Result selectTbItemAllByPage(@RequestParam(defaultValue = "1")Integer page,
                                         @RequestParam(defaultValue = "2")Integer rows) {

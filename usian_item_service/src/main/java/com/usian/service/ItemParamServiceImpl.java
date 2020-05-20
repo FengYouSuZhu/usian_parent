@@ -1,8 +1,11 @@
 package com.usian.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.usian.mapper.TbItemParamMapper;
 import com.usian.pojo.TbItemParam;
 import com.usian.pojo.TbItemParamExample;
+import com.usian.utils.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +16,11 @@ public class ItemParamServiceImpl implements ItemParamService {
     @Autowired
     private TbItemParamMapper tbItemParamMapper;
 
+    /**
+     * 根据商品分类 ID 查询规格参数模板
+     * @param itemCatId
+     * @return
+     */
     @Override
     public TbItemParam selectItemParamByItemCatId(Long itemCatId){
         System.out.println(itemCatId);
@@ -24,5 +32,25 @@ public class ItemParamServiceImpl implements ItemParamService {
             return  list.get(0);
         }
         return null;
+    }
+
+    /**
+     * 查询所有商品规格模板
+     * @param page
+     * @param rows
+     * @return
+     */
+    @Override
+    public PageResult selectItemParamAll(Integer page, Integer rows) {
+        PageHelper.startPage(page,rows);
+        TbItemParamExample tbItemParamExample = new TbItemParamExample();
+        tbItemParamExample.setOrderByClause("updated DESC");
+        List<TbItemParam> tbItemParamList = tbItemParamMapper.selectByExampleWithBLOBs(tbItemParamExample);
+        PageInfo<TbItemParam> pageInfo = new PageInfo<>(tbItemParamList);
+        PageResult pageResult = new PageResult();
+        pageResult.setTotalPage(pageInfo.getTotal());
+        pageResult.setPageIndex(pageInfo.getPageNum());
+        pageResult.setResult(pageInfo.getList());
+        return pageResult;
     }
 }
