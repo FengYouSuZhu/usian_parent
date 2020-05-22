@@ -1,7 +1,10 @@
 package com.usian.service;
 
 import com.usian.pojo.TbContent;
+import com.usian.utils.AdNode;
 import com.usian.utils.PageResult;
+
+import java.util.List;
 
 /**
  * @author 枫柚素主
@@ -15,4 +18,6 @@ public interface ContentService {
     Integer insertTbContent(TbContent tbContent);
     //删除分类下的内容
     Integer deleteContentByIds(Long ids);
+    //查询首页大广告位
+    List<AdNode> selectFrontendContentByAD();
 }

@@ -2,6 +2,7 @@ package com.usian.feign;
 
 import com.usian.pojo.TbContent;
 import com.usian.pojo.TbContentCategory;
+import com.usian.utils.AdNode;
 import com.usian.utils.PageResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,4 +75,7 @@ public interface ContentServiceFeignClient {
      */
     @RequestMapping("/service/content/deleteContentByIds")
     Integer deleteContentByIds(@RequestParam Long ids);
+    //查询首页大广告位
+    @RequestMapping("/service/content/selectFrontendContentByAD")
+    List<AdNode> selectFrontendContentByAD();
 }

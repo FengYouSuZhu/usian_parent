@@ -1,6 +1,7 @@
 package com.usian.service;
 
 import com.usian.pojo.TbItemCat;
+import com.usian.utils.CatResult;
 
 import java.util.List;
 
@@ -11,4 +12,6 @@ import java.util.List;
  */
 public interface ItemCategoryService {
     List<TbItemCat> selectItemCategoryByParentId(Long id);
+    //查询首页商品分类
+    CatResult selectItemCategoryAll();
 }
