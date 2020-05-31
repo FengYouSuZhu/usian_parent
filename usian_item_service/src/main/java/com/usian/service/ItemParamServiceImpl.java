@@ -25,7 +25,7 @@ public class ItemParamServiceImpl implements ItemParamService {
      */
     @Override
     public TbItemParam selectItemParamByItemCatId(Long itemCatId){
-        System.out.println(itemCatId);
+        //System.out.println(itemCatId);
         TbItemParamExample example = new TbItemParamExample();
         TbItemParamExample.Criteria criteria = example.createCriteria();
         criteria.andItemCatIdEqualTo(itemCatId);

@@ -6,12 +6,10 @@ import com.usian.pojo.TbItemParam;
 import com.usian.utils.CatResult;
 import com.usian.utils.PageResult;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 枫柚素主
@@ -87,4 +85,31 @@ public interface ItemServiceFeignClient {
 
     @RequestMapping("/service/itemCategory/selectItemCategoryAll")
     CatResult selectItemCategoryAll();
+
+    /**
+     * 删除商品
+     * @param itemId
+     * @return
+     */
+    @RequestMapping("/service/item/deleteItemById")
+    Integer deleteItemById(@RequestParam Long itemId);
+
+    /**
+     * 修改前，数据回显
+     *      根据商品 ID 查询商品，商品分类，商品描述，商品规格参数
+     * @param itemId
+     * @return
+     */
+    @RequestMapping("/service/item/preUpdateItem")
+    Map<String, Object> preUpdateItem(@RequestParam Long itemId);
+
+    /**
+     * 修改商品信息接口
+     * @param tbItem
+     * @param desc
+     * @param itemParams
+     * @return
+     */
+    @RequestMapping("/service/item/updateTbItem")
+    Integer updateTbItem(TbItem tbItem,@RequestParam String desc,@RequestParam String itemParams);
 }

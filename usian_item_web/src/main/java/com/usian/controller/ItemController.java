@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 /**
  * @author 枫柚素主
  * @version 1.0
@@ -57,5 +59,43 @@ public class ItemController {
             return Result.ok();
         }
         return Result.error("添加失败");
+    }
+
+    /**
+     * 删除商品
+     * @param itemId
+     * @return
+     */
+    @RequestMapping("/deleteItemById")
+    public  Result deleteItemById(Long itemId){
+         Integer deleteItemByIdNum = itemServiceFeignClient.deleteItemById(itemId);
+        if (deleteItemByIdNum == 1){
+            return  Result.ok();
+        }
+            return  Result.error("删除失败");
+    }
+    @RequestMapping("/preUpdateItem")
+    public  Result preUpdateItem(Long itemId){
+        Map<String,Object> map=itemServiceFeignClient.preUpdateItem(itemId);
+        if (map.size()>0){
+            return  Result.ok(map);
+        }
+            return  Result.error("修改前，数据回显失败");
+    }
+
+    /**
+     * 修改商品信息接口
+     * @param tbItem
+     * @param desc
+     * @param itemParams
+     * @return
+     */
+    @RequestMapping("/updateTbItem")
+    public  Result updateTbItem(TbItem tbItem,String desc,String itemParams){
+        Integer updateTbItemNum=itemServiceFeignClient.updateTbItem(tbItem,desc,itemParams);
+        if(updateTbItemNum == 3){
+            return Result.ok();
+        }
+        return Result.error("修改失败！");
     }
 }

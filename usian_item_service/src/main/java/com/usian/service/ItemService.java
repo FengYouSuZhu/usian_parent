@@ -3,6 +3,8 @@ package com.usian.service;
 import com.usian.pojo.TbItem;
 import com.usian.utils.PageResult;
 
+import java.util.Map;
+
 /**
  * @author 枫柚素主
  * @version 1.0
@@ -14,4 +16,10 @@ public interface ItemService {
     PageResult selectTbItemAllByPage(Integer page, Integer rows);
 
     Integer insertTbItem(TbItem tbItem, String desc, String itemParams);
+    //删除商品
+    Integer deleteItemById(Long itemId);
+    //修改前，数据回显
+    Map<String, Object> preUpdateItem(Long itemId);
+    //修改
+    Integer updateTbItem(TbItem tbItem, String desc, String itemParams);
 }

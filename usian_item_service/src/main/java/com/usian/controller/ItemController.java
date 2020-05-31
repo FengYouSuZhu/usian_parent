@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 /**
  * @author 枫柚素主
  * @version 1.0
@@ -45,5 +47,30 @@ public class ItemController {
     @RequestMapping("/insertTbItem")
     public  Integer insertTbItem(@RequestBody TbItem tbItem,String desc,String itemParams){
         return itemService.insertTbItem(tbItem,desc,itemParams);
+    }
+
+    /**
+     * 删除商品
+     * @param itemId
+     * @return
+     */
+    @RequestMapping("/deleteItemById")
+    public  Integer deleteItemById(Long itemId){
+        return  itemService.deleteItemById(itemId);
+    }
+
+    /**
+     * 修改前，数据回显
+     * @param itemId
+     * @return
+     */
+    @RequestMapping("/preUpdateItem")
+    public Map<String,Object> preUpdateItem(Long itemId){
+        return itemService.preUpdateItem(itemId);
+    }
+
+    @RequestMapping("/updateTbItem")
+    public Integer updateTbItem(@RequestBody TbItem tbItem,String desc,String itemParams){
+        return  itemService.updateTbItem(tbItem,desc,itemParams);
     }
 }
