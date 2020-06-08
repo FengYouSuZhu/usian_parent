@@ -1,0 +1,22 @@
+package com.usian.feign;
+
+import com.usian.pojo.SearchItem;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
+/**
+ * @author 枫柚素主
+ * @version 1.0
+ * @date 2020/6/4 23:52
+ */
+@FeignClient("usian-search-service")
+public interface SearchItemFeign {
+    @RequestMapping("/service/searchItem/importAll")
+    public Boolean importAll();
+
+    @RequestMapping("/service/searchItem/list")
+    List<SearchItem> selectByq(@RequestParam String q, @RequestParam Long page, @RequestParam Integer pageSize);
+}

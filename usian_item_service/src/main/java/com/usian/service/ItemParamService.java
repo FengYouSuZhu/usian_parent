@@ -1,6 +1,7 @@
 package com.usian.service;
 
 import com.usian.pojo.TbItemParam;
+import com.usian.pojo.TbItemParamItem;
 import com.usian.utils.PageResult;
 
 /**
@@ -16,4 +17,6 @@ public interface ItemParamService {
     Integer insertItemParam(Long itemCatId, String paramData);
 
     Integer deleteItemParamById(Long id);
+
+    TbItemParamItem selectTbItemParamItemByItemId(Long itemId);
 }

@@ -14,6 +14,11 @@ spring:
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource
+  rabbitmq:
+    host: 192.168.149.128
+    username: admin
+    password: 1111
+    virtual-host: /
   redis:
     cluster:
       nodes:
@@ -30,3 +35,9 @@ spring:
         min-idle: 5 # 连接池中的最小空闲连接
 #商城分类菜单
 PORTAL_CATRESULT_KEY: PORTAL_CATRESULT_KEY
+#商品详情
+ITEM_INFO: ITEM_INFO
+BASE: BASE
+DESC: DESC
+PARAM: PARAM
+ITEM_INFO_EXPIRE: 86400
