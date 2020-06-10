@@ -25,7 +25,6 @@ public class DetailController {
     @RequestMapping("/selectItemInfo")
     public Result selectItemInfo(Long itemId){
         TbItem tbitem=itemServiceFeignClient.selectItemInfo(itemId);
-        System.out.println("//////////////////////////////////////");
         if (tbitem != null) {
             return  Result.ok(tbitem);
         }
